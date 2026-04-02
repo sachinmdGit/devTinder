@@ -2,16 +2,23 @@ const express = require('express');
 
 const app = express();
 
-app.use("/hello", (req, res) => {
-    res.end("Hello Hello Hello!")
-})
+app.get("/user", (req, res) => {
+    res.send({firstName: "Sachinkumar", lastName: "Doddamani"})
+});
 
+app.post("/user", (req, res) => {
+    console.log("Save data to the database"); //assume saving data to DB
+    res.send("Data successfully saved to the database");
+});
+
+app.delete("/user", (req, res) => {
+    res.send("Data successfully deleted");
+});
+
+
+//this will match with all HTTP methods API calls to /test
 app.use("/test", (req, res) => {
     res.end("Hello from the Server!")
-})
-
-app.use("/", (req, res) => {
-    res.end("Namaste from the dashboard!")
 })
 
 app.listen(7777,  () => {
